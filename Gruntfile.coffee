@@ -46,7 +46,7 @@ module.exports = (grunt) ->
             standalone: "SOMEGAME"
     serve:
       options:
-        port: 8080
+        port: 8081
 
   grunt.loadNpmTasks 'grunt-contrib-coffee'
   grunt.loadNpmTasks 'grunt-mocha-test'
