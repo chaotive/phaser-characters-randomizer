@@ -37,6 +37,11 @@ module.exports = (grunt) ->
           references: [
             "lib/main/**/*.d.ts"
           ]
+      'Pcr':
+        src: ['src/main/ts/Pcr/**/*.ts']
+        dest: 'target/temp/js/Pcr'
+        options:
+          module: 'commonjs'
     browserify:
       'some-game':
         files:
