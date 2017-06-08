@@ -37,11 +37,14 @@ module.exports = (grunt) ->
           references: [
             "lib/main/**/*.d.ts"
           ]
-      'Pcr':
-        src: ['src/main/ts/Pcr/**/*.ts']
-        dest: 'target/temp/js/Pcr'
+      'pcr':
+        src: ['src/main/ts/pcr/**/*.ts']
+        dest: 'target/temp/js/pcr'
         options:
           module: 'commonjs'
+          references: [
+            "node_modules/phaser/typescript/phaser.d.ts"
+          ]
     browserify:
       'some-game':
         files:
@@ -49,6 +52,12 @@ module.exports = (grunt) ->
         options:
           browserifyOptions:
             standalone: "SOMEGAME"
+      'pcr':
+        files:
+          'target/js/pcr.js': ['target/temp/js/pcr/Pcr.js']
+        options:
+          browserifyOptions:
+            standalone: "PCR"
     serve:
       options:
         port: 8081
@@ -66,3 +75,4 @@ module.exports = (grunt) ->
   grunt.registerTask 'compile', ['coffee', 'typescript', 'browserify', 'clean:temp']
   grunt.registerTask 'build', ['clean', 'compile', 'copy']
   grunt.registerTask 'release', ['build', 'ftp-deploy']
+  grunt.registerTask 'pcrTest', ['typescript:pcr', 'browserify:pcr', 'mochaTest']
