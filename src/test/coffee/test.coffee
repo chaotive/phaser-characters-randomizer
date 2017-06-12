@@ -1,11 +1,5 @@
-should = require('chai').should()
-
+global.expect = require('chai').expect
 global.Phaser = require('phaser-mock')
-#require '/lib/main/chaotive.fw-0.5.0'
+global.PCR = require '../../../target/temp/js/pcr/Pcr'
 
-#global.SOMEGAME = require '../../../target/js/some-game'
-#require './SOME-GAME/some.spec.coffee'
-
-global.PCR = require '../../../target/js/pcr'
-#global.PCR = require '../../../src/main/ts/pcr/Pcr'
 require './pcr/pcr.spec.coffee'

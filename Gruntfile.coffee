@@ -35,12 +35,14 @@ module.exports = (grunt) ->
         options:
           module: 'commonjs'
           references: [
-            "lib/main/**/*.d.ts"
+            "lib/main/chaotive.fw-0.5.0.d.ts"
+            "node_modules/phaser/typescript/phaser.d.ts"
           ]
       'pcr':
         src: ['src/main/ts/pcr/**/*.ts']
         dest: 'target/temp/js/pcr'
         options:
+          watch: true
           module: 'commonjs'
           references: [
             "node_modules/phaser/typescript/phaser.d.ts"
@@ -72,7 +74,8 @@ module.exports = (grunt) ->
   grunt.loadNpmTasks 'grunt-serve'
 
   grunt.registerTask 'default', ['compile', 'copy', 'mochaTest']
-  grunt.registerTask 'compile', ['coffee', 'typescript', 'browserify', 'clean:temp']
-  grunt.registerTask 'build', ['clean', 'compile', 'copy']
+  grunt.registerTask 'compile', ['coffee', 'typescript']
+  grunt.registerTask 'build', ['clean', 'compile', 'browserify', 'clean:temp', 'copy']
   grunt.registerTask 'release', ['build', 'ftp-deploy']
+
   grunt.registerTask 'pcrTest', ['typescript:pcr', 'browserify:pcr', 'mochaTest']

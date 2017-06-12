@@ -22,3 +22,5 @@ export interface CharacterPieces {
     leftLeg: string;
     rightLeg: string;
 }
+
+export * from "./Character";
